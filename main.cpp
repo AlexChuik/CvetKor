@@ -165,7 +165,7 @@ void display()
     cout << lam.index(0,1) <<endl;
     //---------------------------------------------------------------------------------
     SobstvVector(A, u); //Вычисляю главную ось
-    MainAxisXaf(x, y, labclaster, uX1, uX2, lam.index(0,1));
+    MainAxisXaf(x, y, labclaster, uX1, uX2, lam.index(0,1));//главная ось по Хафу
     //---------------------------------------------------------------------------------
 
     cout << "u: ";
@@ -265,11 +265,9 @@ void display()
     cout << "Конечное MSE: " << MSE << endl;
     cout << "Начальное на конечное: " << MSE1/MSE << endl;
     MSE = 0;
-    // glPopMatrix();
-    // glutSwapBuffers();
     heroimage.saveToFile("Преобразованное.jpg"); //Сохранение преобразованного изображения
 
-
+    //теперь делаю все то же но для параметров найденных с помощью преобразования Хафа
     for (unsigned l = 0; l < x; ++l)
     { 
         for (unsigned p = 0; p < y; ++p)
@@ -283,8 +281,6 @@ void display()
 
     u = uX2 + uX1*(-1);
     m = uX1;
-    //cout << "mX: ";
-    //m.Print();
     cout << "uX: ";
     u.Print();
     g = m + u * ((d * (c + (m*(-1)) ).trans())*(1/((d*u.trans()).index(0,0)))).index(0,0);
@@ -366,9 +362,10 @@ int main(int argc, char* argv[])
     setlocale(LC_ALL, "rus");
     if(argc != 2) 
     {
-        cout << "Укажите название изображения " << endl;
+        cout << "Укажите название изображения " << endl; //нет проверки корректности названия
         return 0;
     }
+    //все ниже для openGL
     Imia = argv[1];
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);

@@ -19,7 +19,7 @@ Matr vuchMatrVrash1(Matr &a, int k,int n) {
         if(ModVec<EPS) continue;
         cosinus = a.index(k-1,k-2)/ModVec; 
         sinus = (-1)*(a.index(j,k-2)/ModVec);
-        for(i=0;i<n;i++) { //делаем Е
+        for(i=0;i<n;i++) {
              for(c=0;c<n;c++) {
                  T1->index(i,c)=0;
                  if(i==c) T1->index(i,c) = 1;
@@ -55,7 +55,7 @@ double CrutimVertim(Matr &a, int n) {
     Matr* Pom = new Matr(n);
     Matr* Q = new Matr(n);
     Matr* R = new Matr(n);
-    for(i=0;i<n;i++) { //делаем Е
+    for(i=0;i<n;i++) {
         for(j=0;j<n;j++) {
             S->index(i,j)=0;
             if(i==j) S->index(i,j) = 1;
@@ -75,7 +75,7 @@ void QRraz(Matr &a, Matr &Q, Matr &R) {  //только для почти тре
     n = a.getStr();
     Matr* Tpom = new Matr(n);
 
-    for(i=0;i<n;i++) { //делаем Е
+    for(i=0;i<n;i++) {
         for(k=0;k<n;k++) {
             Q.index(i,k) = 0;
             if(i==k)
@@ -124,22 +124,6 @@ void SobstvVector (Matr &a, Matr &u)
         a = (R)*(Q);
     }
     Qinf = (T.trans())*Qinf;
-    /*for (int i = 2; i > 0; i--) 
-    {
-        for (int j = 2; j > 0; j--)
-        {
-            if (lam.index(0,j) > lam.index(0,j-1)) 
-            {
-                temp = lam.index(0,j);
-                lam.index(0,j) = lam.index(0,j-1);
-                lam.index(0,j-1) = temp;
-                temp = arr[j];
-                arr[j] = arr[j-1];
-                arr[j-1] = temp;
-            }
-        }
-    }*/
-    //lam.Print();
     u.index(0,0) = Qinf.index(0,0);
     u.index(0,1) = Qinf.index(1,0);
     u.index(0,2) = Qinf.index(2,0); 
